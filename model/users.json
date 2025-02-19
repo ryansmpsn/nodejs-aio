@@ -1,10 +1,1 @@
-[
-  {
-    "username": "user1",
-    "password": "$2b$10$OE3mXI0SEAiR4YSX./jhPOG8A9FJzb1hlXdkU.HGR.bXkCfJlkRdC"
-  },
-  {
-    "username": "user2",
-    "password": "$2b$10$L9MJq1vpvqez/oxLYfNxhefE3iXhZnvVHBjVbOrUqHjOZc0iB7i6q"
-  }
-]
+[{"username":"user1","password":"$2b$10$OE3mXI0SEAiR4YSX./jhPOG8A9FJzb1hlXdkU.HGR.bXkCfJlkRdC"},{"username":"user2","password":"$2b$10$L9MJq1vpvqez/oxLYfNxhefE3iXhZnvVHBjVbOrUqHjOZc0iB7i6q","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiaWF0IjoxNzM5OTk3NTI4LCJleHAiOjE3Mzk5OTc1ODh9.x-P6ayt-qG1fK3FcT98QWAbW1p5WD9kQibL5ygchMVk"}]
