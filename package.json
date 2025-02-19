@@ -1,10 +1,10 @@
 {
   "name": "nodejs-aio",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon server",
+    "start": "node server"
   },
   "author": "Ryan Simpson",
   "license": "ISC",
