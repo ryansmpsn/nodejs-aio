@@ -1,126 +1,60 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const app = express();
 const path = require('path');
-const fsPromises = require('fs').promises;
-
-const logEvents = require('./logEvents');
-
-const eventEmitter = require('events');
-
-class Emitter extends eventEmitter {}
-
-const myEmitter = new Emitter();
-myEmitter.on('log', (msg, fileName) => logEvents(msg, fileName));
-
+const cors = require('cors');
+const { logger, logEvents } = require('./middleware/logEvents');
 const PORT = process.env.PORT || 3500;
 
-const serveFile = async (filePath, contentType, response) => {
-  try {
-    const rawData = await fsPromises.readFile(
-      filePath,
-      !contentType.includes('image') ? 'utf8' : ''
-    );
+// custom middleware logger
+app.use(logger);
 
-    const data =
-      contentType === 'application/json' ? JSON.parse(rawData) : rawData;
-
-    response.writeHead(filePath.includes('404.html') ? 400 : 200, {
-      'Content-Type': contentType
-    });
-    response.end(
-      contentType === 'application/json' ? JSON.stringify(data) : data
-    );
-  } catch (err) {
-    console.log(err);
-    myEmitter.emit('log', `${err.name}: ${err.message}`, 'errLog.txt');
-    response.statusCode = 500;
-    response.end();
-  }
+// Cross Origin Resource Sharing
+const whitelist = ['https://www.yoursite.com', 'http://localhost:3000'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200
 };
 
-const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+app.use(cors(corsOptions));
 
-  const extension = path.extname(req.url);
-  let contentType;
+app.use(express.urlencoded({ extended: false }));
 
-  switch (extension) {
-    case '.css':
-      contentType = 'text/css';
-      break;
-    case '.js':
-      contentType = 'text/javascript';
-      break;
-    case '.json':
-      contentType = 'application/json';
-      break;
-    case '.png':
-      contentType = 'image/png';
-      break;
-    case '.jpg':
-    case '.jpeg':
-      contentType = 'image/jpeg';
-      break;
-    case '.gif':
-      contentType = 'image/gif';
-      break;
-    case '.svg':
-      contentType = 'image/svg+xml';
-      break;
-    case '.wav':
-      contentType = 'audio/wav';
-      break;
-    case '.mp4':
-      contentType = 'video/mp4';
-      break;
-    case '.woff':
-      contentType = 'application/font-woff';
-      break;
-    case '.ttf':
-      contentType = 'application/font-ttf';
-      break;
-    case '.eot':
-      contentType = 'application/vnd.ms-fontobject';
-      break;
-    case '.otf':
-      contentType = 'application/font-otf';
-      break;
-    case '.wasm':
-      contentType = 'application/wasm';
-      break;
-    default:
-      contentType = 'text/html';
-  }
+app.use(express.json());
 
-  let filePath =
-    contentType === 'text/html' && req.url === '/'
-      ? path.join(__dirname, 'views', 'index.html')
-      : contentType === 'text/html' && req.url.slice(-1) === '/'
-      ? path.join(__dirname, 'views', req.url, 'index.html')
-      : contentType === 'text/html'
-      ? path.join(__dirname, 'views', req.url)
-      : path.join(__dirname, req.url);
+app.use(express.static(path.join(__dirname, '/public')));
 
-  if (!extension && req.url.slice(-1) !== '/') filePath += '.html';
-
-  const fileExists = fs.existsSync(filePath);
-
-  if (fileExists) {
-    serveFile(filePath, contentType, res);
-  } else {
-    switch (path.parse(filePath).base) {
-      case 'old-page.html':
-        res.writeHead(301, { Location: '/new-page.html' });
-        res.end();
-        break;
-      case 'www-page.html':
-        res.writeHead(301, { Location: '/' });
-        res.end();
-        break;
-      default:
-        serveFile(path.join(__dirname, 'views', '404.html'), 'text/html', res);
-    }
-  }
+app.get('^/$|/index(.html)?', (req, res) => {
+  res.sendFile(path.join('views', 'index.html'), { root: __dirname });
 });
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get('/new-page(.html)?', (req, res) => {
+  res.sendFile(path.join('views', 'new-page.html'), { root: __dirname });
+});
+
+app.get('/old-page(.html)?', (req, res) => {
+  res.redirect(301, '/new-page.html'); // 302 temporary redirect response by default
+});
+
+// Route handlers
+app.get(
+  '/hello(.html)?',
+  (req, res, next) => {
+    console.log('attempted to load hello.html');
+    next();
+  },
+  (req, res) => {
+    res.send('Hello World!');
+  }
+);
+
+app.get('/*', (req, res) => {
+  res.status(404).sendFile(path.join('views', '404.html'), { root: __dirname });
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

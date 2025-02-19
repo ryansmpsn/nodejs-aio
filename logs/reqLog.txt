@@ -1,0 +1,9 @@
+2025-02-19	11:20:42	c2b96487-2756-4ed6-8aa5-a261302e0f75	GET	undefined	/new-page.html
+2025-02-19	11:20:42	05d58f20-1ebd-4cfd-9f6a-df9c327c71b7	GET	undefined	/css/style.css
+2025-02-19	11:20:42	0437c9aa-9808-4845-8491-8ab1e3854985	GET	undefined	/img/img1.jpg
+2025-02-19	11:22:35	52ec70ca-cf63-4e0e-884d-173a84ee4d40	GET	undefined	/
+2025-02-19	11:22:35	f532c04e-1df0-4813-a588-abbc7743c44b	GET	undefined	/css/style.css
+2025-02-19	11:41:48	4e53fd18-d97c-4442-8b56-408ff53e95ae	OPTIONS	https://stackoverflow.com	/
+2025-02-19	11:41:48	b624047a-b452-44c9-bd76-66b1025391f1	GET	https://stackoverflow.com	/
+2025-02-19	11:47:02	2b143d3c-77ae-4187-9b06-fc9f5d33aeb1	OPTIONS	https://stackoverflow.com	/
+2025-02-19	11:47:02	da0c8431-9d58-4de8-a878-ca80d035dc86	GET	https://stackoverflow.com	/
