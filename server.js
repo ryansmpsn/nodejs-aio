@@ -28,31 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/subdir', express.static(path.join(__dirname, '/public')));
 
-app.get('^/$|/index(.html)?', (req, res) => {
-  res.sendFile(path.join('views', 'index.html'), { root: __dirname });
-});
-
-app.get('/new-page(.html)?', (req, res) => {
-  res.sendFile(path.join('views', 'new-page.html'), { root: __dirname });
-});
-
-app.get('/old-page(.html)?', (req, res) => {
-  res.redirect(301, '/new-page.html'); // 302 temporary redirect response by default
-});
-
-// Route handlers
-app.get(
-  '/hello(.html)?',
-  (req, res, next) => {
-    console.log('attempted to load hello.html');
-    next();
-  },
-  (req, res) => {
-    res.send('Hello World!');
-  }
-);
+// route handlers
+app.use('/', require('./routes/root.js'));
+app.use('/', require('./routes/subdir'));
+app.use('/employees', require('./routes/api/employees'));
 
 app.all('/*', (req, res) => {
   res.status(404);

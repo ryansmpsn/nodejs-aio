@@ -12,3 +12,11 @@
 2025-02-19	11:59:54	b15f2dc6-7a3f-4d43-aa95-9e7f26ef9dba	GET	undefined	/
 2025-02-19	12:01:15	fed3fb6f-1da7-4b88-9449-32b2a21106bd	GET	undefined	/
 2025-02-19	12:51:20	94e4439b-86aa-4ff3-b9a9-93a273ac26d7	GET	undefined	/
+2025-02-19	13:34:15	309896ef-13b2-4d64-ba26-ed01d7c14ae1	GET	undefined	/
+2025-02-19	13:34:36	3c8644da-1d13-40d6-83f0-ab0fc3c51922	GET	undefined	/
+2025-02-19	13:34:36	5b76b90f-2ead-4160-b6fc-c673f8981337	GET	undefined	/css/style.css
+2025-02-19	13:34:51	dcf27122-d8a4-41d7-8d3b-65f2fad65386	GET	undefined	/new-page.html
+2025-02-19	13:34:57	3cb861da-7b93-4f28-91fb-0b505729e7ff	GET	undefined	/new-page.html
+2025-02-19	13:34:57	dbc9fa05-a621-4ac1-96be-a574032afebb	GET	undefined	/css/style.css
+2025-02-19	13:34:57	db3671d3-e088-437f-aca3-30266611979b	GET	undefined	/img/img1.jpg
+2025-02-19	13:45:27	01b7a55b-f061-4547-aac9-6cfb7ee2dd55	GET	undefined	/employees
