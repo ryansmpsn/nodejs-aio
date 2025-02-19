@@ -1,0 +1,4 @@
+2025-02-19	11:18:57	a84c20a4-8ec3-4b67-bb7d-64c1e83ae329	GET	undefined	/new-page.html
+2025-02-19	11:18:57	a84c20a4-8ec3-4b67-bb7d-64c1e83ae329	GET	undefined	/new-page.html
+2025-02-19	11:18:57	e841c584-dda8-4234-881d-e57c38b18c8f	GET	undefined	/css/style.css
+2025-02-19	11:18:57	d792f92d-d517-414e-92ec-cebc76fa9aa1	GET	undefined	/img/img1.jpg
