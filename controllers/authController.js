@@ -6,7 +6,6 @@ const usersDB = {
 };
 
 const bcrypt = require('bcrypt');
-const { access } = require('fs');
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
