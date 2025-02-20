@@ -20,7 +20,7 @@ const handleLogout = async (req, res) => {
     (person) => person.refreshToken === refreshToken
   );
   if (!foundUser) {
-    res.clearCookie('jwt', { httpOnly: true });
+    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     return res.sendStatus(204);
   }
 
@@ -37,7 +37,7 @@ const handleLogout = async (req, res) => {
     JSON.stringify(usersDB.users)
   );
 
-  res.clearCookie('jwt', { httpOnly: true }); // add on production secure: true - only serves on https
+  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true }); // add on production secure: true - only serves on https
   res.sendStatus(204);
 };
 
