@@ -43,3 +43,6 @@
 2025-02-19	15:38:48	debb2b4f-e05a-403c-a2d4-2708630eec4d	POST	undefined	/auth
 2025-02-19	15:38:54	c399a456-6789-4b6d-8a71-2804dc0f6d8b	GET	undefined	/employees
 2025-02-19	15:39:02	5f091faa-e4d8-4f9b-8d3e-91f39ad7b5d3	GET	undefined	/employees
+2025-02-19	20:15:58	a02c3f6a-ffe6-40ba-82ea-29b756626d8d	POST	undefined	/auth
+2025-02-19	20:16:26	bac9fa95-1735-4fbb-bdab-55cb84e23eaa	GET	undefined	/logout
+2025-02-19	20:18:48	02ac3ba0-d300-4a51-ac0a-a0618b483aff	GET	undefined	/refresh
